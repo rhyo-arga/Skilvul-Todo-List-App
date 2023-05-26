@@ -35,19 +35,27 @@ const TodoItem = ({ todo }) => {
     <>
       {isEditing ? (
         <>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button onClick={handleSaveEdit}>Save</button>
-          <button onClick={handleCancelEdit}>Cancel</button>
+          <div className="d-flex align-items-center justify-content-center w-100">
+            <div className="border border-dark d-flex align-items-center justify-content-between gap-5 w-50">
+              <div className="form-check d-flex align-items-center justify-content-between gap-4">
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                <div className="d-flex align-items-center justify-content-between gap-5">
+                  <button onClick={handleSaveEdit}>Save</button>
+                  <button onClick={handleCancelEdit}>Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
         <div className="d-flex align-items-center justify-content-center w-100">
           <div className="border border-dark d-flex align-items-center justify-content-between gap-5 w-50">
             <div className="form-check d-flex align-items-center justify-content-between gap-4">
-              <input 
+              <input
                 className="form-check-input"
                 type="checkbox"
                 value=""
