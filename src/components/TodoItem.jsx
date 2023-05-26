@@ -31,6 +31,13 @@ const TodoItem = ({ todo }) => {
     deleteTodo(todo.id);
   };
 
+  const handleToggleCompleted = () => {
+    editTodo({
+      ...todo,
+      completed: !todo.completed,
+    });
+  };
+
   return (
     <>
       {isEditing ? (
@@ -58,10 +65,12 @@ const TodoItem = ({ todo }) => {
               <input
                 className="form-check-input"
                 type="checkbox"
+                checked={todo.completed}
+                onChange={handleToggleCompleted}
                 value=""
                 id="flexCheckDefault"
               />
-              <label className="form-check-label" htmlFor="flexCheckDefault">
+              <label className={`form-check-label ${todo.completed ? 'completed' : 'active'}`} htmlFor="flexCheckDefault">
                 <span id="title">{todo.title}</span>
               </label>
             </div>
