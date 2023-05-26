@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 
 const TodoItem = ({ todo }) => {
   const { editTodo, deleteTodo } = useContext(TodoContext);
@@ -31,25 +32,29 @@ const TodoItem = ({ todo }) => {
   };
 
   return (
-    <li>
-      {isEditing ? (
-        <>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button onClick={handleSaveEdit}>Save</button>
-          <button onClick={handleCancelEdit}>Cancel</button>
-        </>
-      ) : (
-        <>
-          <span>{todo.title}</span>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-        </>
-      )}
-    </li>
+    <>
+      <li>
+        {isEditing ? (
+          <>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <button onClick={handleSaveEdit}>Save</button>
+            <button onClick={handleCancelEdit}>Cancel</button>
+          </>
+        ) : (
+          <>
+            <span>{todo.title}</span>
+            <AiFillEdit onClick={handleEdit}/> 
+            <AiFillDelete onClick={handleDelete}/>
+
+          </>
+        )}
+      </li>
+    </>
+    
   );
 };
 
