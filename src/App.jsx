@@ -5,9 +5,9 @@ import TodoContextProvider from "./contexts/TodoContext";
 const App = () => {
   return (
     <TodoContextProvider>
-      <div className="App">
+      <div className="App d-flex flex-column align-items-center justify-content-center gap-5">
         <h1>Todo List</h1>
-        <h2></h2>
+        <h3>Planning to do something today?</h3>
         <TodoForm />
         <TodoList />
       </div>

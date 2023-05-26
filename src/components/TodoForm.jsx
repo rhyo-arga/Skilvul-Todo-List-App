@@ -14,10 +14,10 @@ const TodoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form className='w-100 d-flex align-items-center justify-content-center gap-5' onSubmit={handleSubmit}>
+      <input className='w-50' required
         type="text"
-        placeholder="Add a new todo..."
+        placeholder="Type your plan here..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
