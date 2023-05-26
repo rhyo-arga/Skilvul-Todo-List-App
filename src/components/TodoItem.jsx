@@ -1,17 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
 
 const TodoItem = ({ todo }) => {
   const { editTodo, deleteTodo } = useContext(TodoContext);
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(todo.title);
 
   const handleEdit = () => {
-    const newTitle = prompt('Enter a new title', todo.title);
-    if (newTitle && newTitle.trim() !== '') {
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    setTitle(todo.title);
+    setIsEditing(false);
+  };
+
+  const handleSaveEdit = () => {
+    if (title.trim() !== '') {
       editTodo({
         ...todo,
-        title: newTitle,
+        title: title.trim(),
       });
+      setIsEditing(false);
     }
   };
 
@@ -20,13 +31,25 @@ const TodoItem = ({ todo }) => {
   };
 
   return (
-    <>
-      <li>
-        <span>{todo.title}</span>
-        <button onClick={handleEdit}>Edit</button>
-        <button onClick={handleDelete}>Delete</button>
-      </li>
-    </>
+    <li>
+      {isEditing ? (
+        <>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <button onClick={handleSaveEdit}>Save</button>
+          <button onClick={handleCancelEdit}>Cancel</button>
+        </>
+      ) : (
+        <>
+          <span>{todo.title}</span>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+        </>
+      )}
+    </li>
   );
 };
 
