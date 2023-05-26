@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from 'react';
-import { TodoContext } from '../contexts/TodoContext';
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
+import { useContext, useState } from "react";
+import { TodoContext } from "../contexts/TodoContext";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 const TodoItem = ({ todo }) => {
   const { editTodo, deleteTodo } = useContext(TodoContext);
@@ -18,7 +18,7 @@ const TodoItem = ({ todo }) => {
   };
 
   const handleSaveEdit = () => {
-    if (title.trim() !== '') {
+    if (title.trim() !== "") {
       editTodo({
         ...todo,
         title: title.trim(),
@@ -33,28 +33,39 @@ const TodoItem = ({ todo }) => {
 
   return (
     <>
-      <li>
-        {isEditing ? (
-          <>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <button onClick={handleSaveEdit}>Save</button>
-            <button onClick={handleCancelEdit}>Cancel</button>
-          </>
-        ) : (
-          <>
-            <span>{todo.title}</span>
-            <AiFillEdit onClick={handleEdit}/> 
-            <AiFillDelete onClick={handleDelete}/>
-
-          </>
-        )}
-      </li>
+      {isEditing ? (
+        <>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <button onClick={handleSaveEdit}>Save</button>
+          <button onClick={handleCancelEdit}>Cancel</button>
+        </>
+      ) : (
+        <div className="d-flex align-items-center justify-content-center w-100">
+          <div className="border border-dark d-flex align-items-center justify-content-between gap-5 w-50">
+            <div className="form-check d-flex align-items-center justify-content-between gap-4">
+              <input 
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                <span id="title">{todo.title}</span>
+              </label>
+            </div>
+            <div className="d-flex align-items-center justify-content-between gap-5">
+              <AiFillEdit onClick={handleEdit} />
+              <AiFillDelete onClick={handleDelete} />
+            </div>
+          </div>
+        </div>
+      )}
+      <br />
     </>
-    
   );
 };
 
