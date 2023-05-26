@@ -7,6 +7,7 @@ const App = () => {
     <TodoContextProvider>
       <div className="App">
         <h1>Todo List</h1>
+        <h2></h2>
         <TodoForm />
         <TodoList />
       </div>

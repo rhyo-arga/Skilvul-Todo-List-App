@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useReducer } from 'react';
 import todoReducer from '../reducers/todoReducers';
-import { getTodos, addTodo, editTodo, deleteTodo } from '../api';
+import { getTodos, addTodo, editTodo, deleteTodo } from '../API';
 
 export const TodoContext = createContext();
 
